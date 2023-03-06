@@ -1,17 +1,26 @@
 <template>
-  <div>123</div>
-  <button @click="test1" style="height: 40px; width: 40px">点击get</button>
-  <button @click="test2" style="height: 40px; width: 40px">点击post</button>
+  <el-input
+    v-model="textarea"
+    :rows="2"
+    type="textarea"
+    placeholder="Please input"
+  />
+  <el-button type="primary" @click="submit">上传</el-button>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { get_article, upload_article } from "@/network/article/article";
-onMounted(() => {});
-function test1() {
-  get_article();
-}
-function test2() {
-  upload_article();
+
+const textarea = ref("");
+function submit(): void {
+  // console.log(Date.getNowDate());
+  const date = Date.now();
+  upload_article({
+    article_title: "test1",
+    article_content: textarea.value,
+    article_time: "2023-10-16 10:12:42",
+    article_views: 1,
+  });
 }
 </script>
