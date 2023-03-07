@@ -1,23 +1,31 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import ElementPlus from 'element-plus'
+import VMdEditor from '@kangc/v-md-editor';
+import '@kangc/v-md-editor/lib/style/base-editor.css';
+import githubTheme from '@kangc/v-md-editor/lib/theme/github.js';
+import '@kangc/v-md-editor/lib/theme/style/github.css';
+
+
 import 'element-plus/dist/index.css'
-import {ElMessage} from 'element-plus'
-import type { InjectionKey } from 'vue'
+
+
+
 
 import App from './App.vue'
 import router from './router'
 
 import './assets/main.css'
-import type { SFCInstallWithContext } from 'element-plus/es/utils'
+
+VMdEditor.use(githubTheme);
+
 
 const app = createApp(App)
+app.use(VMdEditor);
 
-// 泛型
-// const provide_Message = Symbol('$message') as InjectionKey<SFCInstallWithContext<Message>>
+
 
 app.use(ElementPlus)
-// app.provide('$message',ElMessage)
 app.use(createPinia())
 app.use(router)
 
