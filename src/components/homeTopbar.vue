@@ -1,22 +1,23 @@
 <template>
   <div class="homeTopbar">
-    <el-menu
-      :default-active="activeIndex"
-      class="el-menu-demo"
-      mode="horizontal"
-      :ellipsis="false"
-      @select="handleSelect"
-      router
-    >
-      <el-menu-item index="0" style="pointer-events: none"
-        >MuMu Jio</el-menu-item
+    <div class="homeTopbar-fiexd">
+      <el-menu
+        :default-active="activeIndex"
+        class="el-menu-class"
+        mode="horizontal"
+        :ellipsis="false"
+        @select="handleSelect"
+        router
       >
-      <div class="flex-grow" />
-      <el-menu-item index="/">首页</el-menu-item>
-      <el-menu-item index="/article">文章</el-menu-item>
-      <el-menu-item index="3">作品集</el-menu-item>
-      <el-menu-item index="4">ChatGPT</el-menu-item>
-      <!-- <el-sub-menu index="4">
+        <el-menu-item index="0" style="pointer-events: none"
+          >MuMu Jio</el-menu-item
+        >
+        <div class="flex-grow" />
+        <el-menu-item index="/">首页</el-menu-item>
+        <el-menu-item index="/home/article">文章</el-menu-item>
+        <el-menu-item index="3">作品集</el-menu-item>
+        <el-menu-item index="4">ChatGPT</el-menu-item>
+        <!-- <el-sub-menu index="4">
         <template #title>Workspace</template>
         <el-menu-item index="4-1">item one</el-menu-item>
         <el-menu-item index="4-2">item two</el-menu-item>
@@ -28,7 +29,8 @@
           <el-menu-item index="4-4-3">item three</el-menu-item>
         </el-sub-menu>
       </el-sub-menu> -->
-    </el-menu>
+      </el-menu>
+    </div>
   </div>
 </template>
 
@@ -39,7 +41,21 @@ let activeIndex = ref("");
 function handleSelect() {}
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+.homeTopbar {
+  height: 6vh;
+  .homeTopbar-fiexd {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+  }
+  .el-menu-class {
+    background-color: rgb(255, 251, 232);
+    height: 6vh;
+    border: 0;
+  }
+}
 .flex-grow {
   flex-grow: 1;
 }

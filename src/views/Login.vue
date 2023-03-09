@@ -41,9 +41,10 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, inject, getCurrentInstance } from "vue";
+import { reactive } from "vue";
 import { useRouter } from "vue-router";
 import { manager_login } from "@/network/manager/manager";
+import { ElMessage } from "element-plus";
 let form_data = reactive({
   account: "",
   password: "",
@@ -53,7 +54,6 @@ let form_data = reactive({
 // let password = ref<string>("");
 const router = useRouter();
 
-const { proxy } = getCurrentInstance();
 function enroll() {
   router.push("/enroll");
 }
@@ -61,15 +61,18 @@ function enroll() {
 function login() {
   manager_login(form_data).then(
     (res) => {
-      console.log(res);
-      proxy.$message({
+      localStorage.setItem("login_token", res.data.token);
+      ElMessage({
         type: "success",
-        message: `${res.data.message}`,
+        message: `${res.message}`,
       });
-      // (inject("$message") as any).success(`${res}`);
+      router.push("/home");
     },
     (error) => {
-      (inject("$message") as any).error(`${error}`);
+      ElMessage({
+        type: "error",
+        message: `${error.message}`,
+      });
     }
   );
 }
@@ -77,8 +80,9 @@ function login() {
 
 <style lang="less" scoped>
 .Login {
-  height: 100%;
+  height: 100vh;
   background-color: rgb(255, 251, 232);
+  overflow: hidden;
 }
 .el-container {
   height: 100%;

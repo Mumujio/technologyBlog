@@ -9,6 +9,11 @@
           ></el-input></div
       ></el-header>
       <el-main>
+        <el-input
+          placeholder="输入文章图片名称"
+          v-model="article_img"
+          style="width: 80%; padding-bottom: 20px"
+        ></el-input>
         <v-md-editor
           v-model="textarea"
           :autofocus="true"
@@ -33,19 +38,22 @@ import { onMounted, ref } from "vue";
 import { get_article, upload_article } from "@/network/article/article";
 import { getNowDate } from "@/util/getTime";
 import { ElMessage } from "element-plus";
+import { useRouter } from "vue-router";
 
 let textarea = ref("");
 let article_title = ref("");
-
+let article_img = ref("");
+const router = useRouter();
 // 发表
 function save() {
-  if (article_title.value && textarea.value) {
+  if (article_title.value && textarea.value && article_img.value) {
     // 标题和内容不能为空
     upload_article({
       article_title: article_title.value,
       article_content: textarea.value,
       article_time: getNowDate(),
       article_views: 1,
+      article_img: "http://119.23.189.220:666/photo/" + article_img.value,
     }).then((res: { status: number; message: string }) => {
       console.log(res);
       if (res.status == 0) {
@@ -54,8 +62,7 @@ function save() {
           type: "success",
           message: `${res.message}`,
         });
-        textarea.value = "";
-        article_title.value = "";
+        router.push("/home/article");
       } else {
         // 查询失败
         ElMessage({
@@ -67,7 +74,7 @@ function save() {
   } else {
     ElMessage({
       type: "error",
-      message: "标题和内容不能为空",
+      message: "标题和内容图片不能为空",
     });
   }
 }
@@ -80,11 +87,7 @@ function empty() {
 
 <style lang="less" scoped>
 .article_edit {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   background-color: #e6d1d1;
+  height: 94vh;
 }
 </style>

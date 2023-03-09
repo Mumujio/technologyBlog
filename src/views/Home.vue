@@ -5,5 +5,4 @@
 
 <script setup lang="ts">
 import HomeTopbar from "@/components/homeTopbar.vue";
-import { onMounted, ref } from "vue";
 </script>
