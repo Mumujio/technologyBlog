@@ -16,7 +16,7 @@ export const upload_article = function (data:{article_title:string,article_conte
     })
 }
 
-export const modify_article = function (data: { article_title: string, article_content: string, article_time: string, article_views: number, article_img: string, article_id: string }) {
+export const modify_article = function (data: { article_title: string, article_content: string, article_time: string, article_views: number, article_img: string, article_id: number }) {
     return require({
         url: 'article',
         method: 'put',

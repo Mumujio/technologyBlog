@@ -22,9 +22,9 @@
         v-model="article_data.article_content"
         :autofocus="true"
         width="100%"
-        height="60vh"
         ref="editor"
         :mode="editor_config.mode"
+        @save="vmd_save"
       ></v-md-editor>
     </div>
   </div>
@@ -106,7 +106,7 @@ function save_article() {
     article_time: getNowDate(),
     article_views: article_data.article_views || 1,
     article_img: article_data.article_img || "",
-    article_id: route.params.id as string,
+    article_id: Number(route.params.id),
   }).then((res: { status: number; message: string }) => {
     if (res.status == 0) {
       // 修改成功
@@ -117,6 +117,34 @@ function save_article() {
 
       editor_config.mode = "preview";
       isEdit.value = false;
+    } else {
+      // 修改失败
+      ElMessage({
+        type: "error",
+        message: `${res.message}`,
+      });
+    }
+  });
+}
+function vmd_save() {
+  // 修改文章
+  modify_article({
+    article_title: article_data.article_title || "",
+    article_content: article_data.article_content || "",
+    article_time: getNowDate(),
+    article_views: article_data.article_views || 1,
+    article_img: article_data.article_img || "",
+    article_id: Number(route.params.id),
+  }).then((res: { status: number; message: string }) => {
+    if (res.status == 0) {
+      // 修改成功
+      ElMessage({
+        type: "success",
+        message: `${res.message}`,
+      });
+
+      // editor_config.mode = "preview";
+      // isEdit.value = false;
     } else {
       // 修改失败
       ElMessage({
@@ -148,5 +176,9 @@ function save_article() {
     width: 80%;
     margin: 0 auto;
   }
+}
+.v-md-editor {
+  background-color: rgb(247, 237, 204);
+  min-height: 60vh;
 }
 </style>
