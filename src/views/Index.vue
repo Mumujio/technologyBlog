@@ -6,7 +6,8 @@
 </template>
 <script setup lang="ts">
 import HomeTopbar from "@/components/homeTopbar.vue";
-console.log(import.meta.env);
+
+/* 测试 */
 </script>
 <style lang="less" scoped>
 .Index {

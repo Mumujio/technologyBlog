@@ -25,6 +25,8 @@
         ref="editor"
         :mode="editor_config.mode"
         @save="vmd_save"
+        :include-level="[2, 3, 4]"
+        :default-show-toc="true"
       ></v-md-editor>
     </div>
   </div>
