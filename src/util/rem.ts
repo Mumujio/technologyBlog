@@ -5,7 +5,7 @@ import _ from 'lodash'
 export const setDomFontSize = () => {
     let width = document.documentElement.clientWidth || document.body.clientWidth;
     let fontsize = (width <= 200 ? 1200 : width) / 100 + 'px';
-    (document.getElementsByTagName('html')[0].style)['font-size']  = fontsize;
+    (document.getElementsByTagName('html')[0].style)['fontSize']  = fontsize;
 }
 setDomFontSize()
 let setDomFontSizeDebounce = _.debounce(setDomFontSize,400)
