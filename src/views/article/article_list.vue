@@ -41,7 +41,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { onMounted, reactive, ref } from "vue";
 import { get_article } from "@/network/article/article";
 import { useRouter, RouterLink } from "vue-router";

@@ -34,8 +34,17 @@ const router = createRouter({
           component: () => import("@/views/article/article_edit.vue"),
           meta:{isManager:true}
         },
-       
-
+        
+        {
+          path: "portfolios",
+          name: "portfolios",
+          component: () => import("@/views/Portfolios.vue"),
+        },
+        {
+          path: "portfolios/echarts_test",
+          name: "echarts_test",
+          component: () => import("@/views/portfolios/echarts_test.vue"),
+        },
       ],
     },
     {

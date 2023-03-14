@@ -15,7 +15,7 @@
         <div class="flex-grow" />
         <el-menu-item index="/">首页</el-menu-item>
         <el-menu-item index="/home/article">文章</el-menu-item>
-        <el-menu-item index="3">作品集</el-menu-item>
+        <el-menu-item index="/home/portfolios">作品集</el-menu-item>
         <el-menu-item index="4">ChatGPT</el-menu-item>
         <!-- <el-sub-menu index="4">
         <template #title>Workspace</template>
@@ -44,11 +44,12 @@ function handleSelect() {}
 <style lang="less" scoped>
 .homeTopbar {
   height: 6vh;
+  z-index: 9999;
   .homeTopbar-fiexd {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 999;
+    z-index: 9999;
   }
   .el-menu-class {
     background-color: rgb(255, 251, 232);
