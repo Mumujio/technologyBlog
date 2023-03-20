@@ -55,8 +55,6 @@ onMounted(() => {
             areaColor: "rgba(255,111,255, 0.5)",
           },
         },
-
-        data: [],
       },
     ],
   });

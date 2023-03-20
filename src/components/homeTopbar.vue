@@ -46,10 +46,9 @@ function handleSelect() {}
   height: 6vh;
   z-index: 9999;
   .homeTopbar-fiexd {
-    position: fixed;
-    top: 0;
+    // position: fixed;
+    // top: 0;
     width: 100%;
-    z-index: 9999;
   }
   .el-menu-class {
     background-color: rgb(255, 251, 232);
